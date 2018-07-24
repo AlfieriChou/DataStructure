@@ -6,11 +6,19 @@ function BinarySearchTree () {
   }
   let root = null
   const insertNode = (node, newNode) => {
-    if (newNode.key < node.key) {
-      node.left === null ? node.left = newNode : insertNode(node.left, newNode)
-    } else {
-      node.right === null ? node.right = newNode : insertNode(node.right, newNode)
+    switch (newNode.key < node.key) {
+      case true:
+        node.left === null ? node.left = newNode : insertNode(node.left, newNode)
+        break
+      case false:
+        node.right === null ? node.right = newNode : insertNode(node.right, newNode)
+        break
     }
+    // if (newNode.key < node.key) {
+    //   node.left === null ? node.left = newNode : insertNode(node.left, newNode)
+    // } else {
+    //   node.right === null ? node.right = newNode : insertNode(node.right, newNode)
+    // }
   }
   const inOrderTraverseNode = (node, callback) => {
     if (node !== null) {
