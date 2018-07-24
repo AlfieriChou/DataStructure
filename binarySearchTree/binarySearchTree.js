@@ -36,6 +36,37 @@ function BinarySearchTree () {
       callback(node.key)
     }
   }
+  const minNode = (node) => {
+    if (node) {
+      while (node && node.left !== null) {
+        node = node.left
+      }
+      return node.key
+    }
+    return null
+  }
+  const maxNode = (node) => {
+    if (node) {
+      while (node && node.right !== null) {
+        node = node.right
+      }
+      return node.key
+    }
+    return null
+  }
+  const searchNode = (node, key) => {
+    return node === null ? false : key < node.key ? searchNode(node.left, key) : key > node.key ? searchNode(node.right, key) : true
+    // if (node === null) {
+    //   return false
+    // }
+    // if (key < node.key) {
+    //   return searchNode(node.left, key)
+    // } else if (key > node.key) {
+    //   return searchNode(node.right, key)
+    // } else {
+    //   return true
+    // }
+  }
   this.insert = (key) => {
     let newNode = new Node(key)
     root === null ? root = newNode : insertNode(root, newNode)
@@ -48,6 +79,15 @@ function BinarySearchTree () {
   }
   this.postOrderTraverse = (callback) => {
     postOrderTraverseNode(root, callback)
+  }
+  this.min = () => {
+    return minNode(root)
+  }
+  this.max = () => {
+    return maxNode(root)
+  }
+  this.search = (key) => {
+    return searchNode(root, key)
   }
 }
 
@@ -75,3 +115,9 @@ function printNode (value) {
 
 // 后序遍历
 // tree.postOrderTraverse(printNode)
+
+console.log(tree.min())
+console.log(tree.max())
+
+console.log(tree.search(1) ? 'Key 1 found' : 'Key 1 not found')
+console.log(tree.search(7) ? 'Key 7 found' : 'Key 7 not found')
