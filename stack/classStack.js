@@ -25,7 +25,7 @@ class Stack {
   }
 }
 
-let stack = new Stack()
+const stack = new Stack()
 console.log(stack.isEmpty())
 console.log(stack.pop())
 
